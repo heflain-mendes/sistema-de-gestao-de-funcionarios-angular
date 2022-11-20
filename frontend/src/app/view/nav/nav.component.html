@@ -1,0 +1,18 @@
+<mat-toolbar>
+    <button mat-button [matMenuTriggerFor]="funcionario">Funcionario</button>
+    <mat-menu #funcionario="matMenu">
+      <button mat-menu-item>Cadastra Funcionario</button>
+      <button mat-menu-item>Lista Funcionario</button>
+    </mat-menu>
+    <button mat-button [matMenuTriggerFor]="salario">Salário</button>
+    <mat-menu #salario="matMenu">
+      <button mat-menu-item>Calcular Salario</button>
+      <button mat-menu-item>Item 2</button>
+    </mat-menu>
+    <button mat-button [matMenuTriggerFor]="configuracao">configuração</button>
+    <mat-menu #configuracao="matMenu">
+      <button mat-menu-item>Item 1</button>
+      <button mat-menu-item>Item 2</button>
+    </mat-menu>
+  </mat-toolbar>
+  
