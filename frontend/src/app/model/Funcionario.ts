@@ -1,6 +1,6 @@
 import { Endereco } from './Endereco';
 export interface Funcionario {
-  id : number;
+  id?: number;
   nome: string;
   dataNascimento: Date;
   endereco : Endereco;

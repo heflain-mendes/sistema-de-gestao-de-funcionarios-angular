@@ -22,8 +22,7 @@
       <mat-form-field appearance="fill">
         <mat-label>Cargo</mat-label>
         <mat-select name="cargo" [(ngModel)]="funcionario.cargo">
-          <mat-option value="one">First option</mat-option>
-          <mat-option value="two">Second option</mat-option>
+          <mat-option *ngFor="let item of listCargo" [value]=item.id>{{item.cargo}}</mat-option>
         </mat-select>
       </mat-form-field>
 
@@ -41,7 +40,7 @@
         <span matSuffix>.00</span>
       </mat-form-field>
 
-      <mat-checkbox>Funcionário do mês</mat-checkbox>
+      <mat-checkbox name="funcionarioDoMes" [(ngModel)]="funcionario.funcionarioDoMes">Funcionário do mês</mat-checkbox>
     </fieldset>
     <fieldset>
       <legend>endereço</legend>
@@ -52,7 +51,7 @@
         </mat-form-field>
         <mat-form-field appearance="fill" class="numero">
           <mat-label>Nº</mat-label>
-          <input matInput type="number" name="numero" ngModel />
+          <input matInput type="number" name="numero" [(ngModel)]="funcionario.endereco.numero" />
         </mat-form-field>
       </div>
       <div>

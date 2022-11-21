@@ -1,12 +1,14 @@
+import { environment } from './../../../environments/environment';
 import { Funcionario } from './../../model/Funcionario';
 import { Injectable } from '@angular/core';
-import {HttpClient} from '@angular/common/http'
+import {HttpClient, HttpHandler} from '@angular/common/http'
+import { take } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class FuncionarioServiceService {
-  private url = "";
+  private readonly url= `${environment.URL}funcionarios/`;
 
   constructor(private http: HttpClient) { }
 
@@ -20,5 +22,21 @@ export class FuncionarioServiceService {
 
   removeItem(id : number){
     this.http.delete(`${this.url}/${id}`).subscribe();
+  }
+
+  private create(funcionario : Funcionario){
+    return this.http.post(this.url, funcionario).pipe(take(1));
+  }
+
+  private update(funcionario : Funcionario){
+    return this.http.put(`${this.url}/${funcionario.id}`, funcionario).pipe(take(1));
+  }
+
+  save(funcionario : Funcionario){
+    if(funcionario.id){
+      return this.update(funcionario);
+    }else{
+      return this.create(funcionario);
+    }
   }
 }

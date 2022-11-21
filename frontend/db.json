@@ -1,0 +1,13 @@
+{
+  "funcionarios": [],
+  "cargos": [
+    {
+      "id": 1,
+      "cargo": "Programador"
+    },
+    {
+      "id": 2,
+      "cargo": "Gerente"
+    }
+  ]
+}

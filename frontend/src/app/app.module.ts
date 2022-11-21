@@ -21,6 +21,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import {MatGridListModule} from '@angular/material/grid-list';
 import {MatTableModule} from '@angular/material/table';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 
 //adicionais do angular
 import { FormsModule } from '@angular/forms';
@@ -46,6 +47,7 @@ import { ListarFuncionarioComponent } from './view_components/listar-funcionario
     MatCheckboxModule,
     MatGridListModule,
     MatTableModule,
+    MatSnackBarModule,
     
     //angular
     FormsModule,

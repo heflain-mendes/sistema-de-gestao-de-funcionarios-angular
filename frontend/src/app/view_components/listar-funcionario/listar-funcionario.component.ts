@@ -12,32 +12,34 @@ import { Component, OnInit } from '@angular/core';
 export class ListarFuncionarioComponent implements OnInit {
   listCargo!: Cargo[];
 
-  displayedColumns: string[] = ['id', 'nome', 'data nascimento', 'cargo', 'SalarioAtual'];
-  dataSource: Funcionario[] = [
-    {
-      id: 1,
-      nome: 'heflain',
-      dataNascimento: new Date(2000, 8, 9),
-      cargo: 0,
-      SalarioAtual : 500,
-      endereco : {
-        'id' : 1,
-        'rua' : 'major',
-        'estado' : 'ES',
-        'pais' : "BR",
-        'latitude': -5,
-        'longitude' : 10,
-        'numero' : 60 
-      },
-      funcionarioDoMes : false,
-    },
+  displayedColumns: string[] = [
+    'id',
+    'nome',
+    'data nascimento',
+    'cargo',
+    'salarioatual',
+    'funcionario do mês',
+    'remover'
   ];
+  dataSource: Funcionario[] = []
 
   constructor(
     private funcionarioService: FuncionarioServiceService,
     private cargoService: CargoServiceService
   ) {
+    this.funcionarioService.getAll().subscribe((el) => this.dataSource = el);
+    this.cargoService.getAll().subscribe((el) => this.listCargo = el);
   }
 
   ngOnInit(): void {}
+
+  retornaCargo(func : Funcionario) : string{
+    if(!func || !this.listCargo) return "";
+    return this.listCargo.filter(el => el.id == func.cargo)[0].cargo;
+  }
+
+  remover(func : Funcionario){
+    this.funcionarioService.removeItem(func.id!);
+    this.funcionarioService.getAll().subscribe((el) => this.dataSource = el);
+  }
 }

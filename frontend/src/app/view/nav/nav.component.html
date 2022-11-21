@@ -1,8 +1,8 @@
 <mat-toolbar>
     <button mat-button [matMenuTriggerFor]="funcionario">Funcionario</button>
     <mat-menu #funcionario="matMenu">
-      <button mat-menu-item>Cadastra Funcionario</button>
-      <button mat-menu-item>Lista Funcionario</button>
+      <button mat-menu-item routerLink="funcionario">Cadastra Funcionario</button>
+      <button mat-menu-item routerLink="list">Lista Funcionario</button>
     </mat-menu>
     <button mat-button [matMenuTriggerFor]="salario">Salário</button>
     <mat-menu #salario="matMenu">

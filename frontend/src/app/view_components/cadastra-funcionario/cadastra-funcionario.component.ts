@@ -1,5 +1,13 @@
+import { FuncionarioState } from './../../model/FuncionarioState';
+import { ShowMensageService } from './../../services/show-mensage/show-mensage.service';
+import { Cargo } from './../../model/Cargo';
+import { CargoServiceService } from './../../services/cargo-service/cargo-service.service';
+import { FuncionarioServiceService } from './../../services/funcionario-service/funcionario-service.service';
 import { Funcionario } from './../../model/Funcionario';
 import { Component, Input, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { FuncionarioCreateService } from './funcionario-state/funcionario-create/funcionario-create.service';
+import { FuncionarioUpdateService } from './funcionario-state/funcionario-update/funcionario-update.service';
 
 @Component({
   selector: 'app-cadastra-funcionario',
@@ -7,26 +15,37 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrls: ['./cadastra-funcionario.component.css'],
 })
 export class CadastraFuncionarioComponent implements OnInit {
-  funcionario: Funcionario = {
-    id: 0,
-    nome: 'heflain',
-    dataNascimento: new Date(2000,8, 9),
-    cargo: 0,
-    SalarioAtual: 500,
-    endereco: {
-      id: 1,
-      rua: 'major',
-      estado: 'ES',
-      pais: 'BR',
-      latitude: -5,
-      longitude: 10,
-      numero: 60,
-    },
-    funcionarioDoMes: false,
-  };
-  constructor() {}
+  funcionarioState!: FuncionarioState;
+  id: number | null = null;
+  listCargo?: Cargo[];
+
+  funcionario!: Funcionario;
+
+
+  constructor(
+    readonly route : ActivatedRoute,
+    readonly cargoService: CargoServiceService,
+    readonly funcionarioService: FuncionarioServiceService,
+    readonly mensage: ShowMensageService
+  ) {
+    this.cargoService.getAll().subscribe((el) => (this.listCargo = el));
+
+    const posivelId = route.snapshot.paramMap.get("id");
+
+    if(posivelId){
+      this.id = Number.parseInt(posivelId);
+      new FuncionarioUpdateService(this);
+    }else{
+      new FuncionarioCreateService(this);
+    }
+
+    this.funcionarioState.construir();
+  }
 
   ngOnInit(): void {}
 
-  salvar() {}
+  salvar() {
+    console.log(this.funcionario);
+    this.funcionarioState.salvar();
+  }
 }
