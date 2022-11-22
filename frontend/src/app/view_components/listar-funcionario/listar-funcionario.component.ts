@@ -19,19 +19,23 @@ export class ListarFuncionarioComponent implements OnInit {
     'cargo',
     'salarioatual',
     'funcionario do mês',
+    'endereco',
     'remover'
   ];
+  
   dataSource: Funcionario[] = []
 
   constructor(
     private funcionarioService: FuncionarioServiceService,
     private cargoService: CargoServiceService
   ) {
+    
+  }
+
+  ngOnInit(): void {
     this.funcionarioService.getAll().subscribe((el) => this.dataSource = el);
     this.cargoService.getAll().subscribe((el) => this.listCargo = el);
   }
-
-  ngOnInit(): void {}
 
   retornaCargo(func : Funcionario) : string{
     if(!func || !this.listCargo) return "";

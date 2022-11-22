@@ -4,3 +4,13 @@ table{
     margin-right: auto;
     margin-top: 1vh;
 }
+
+a:link, a:visited {
+    color: rgb(244, 2, 211);
+    text-align: center;
+    text-decoration: none;
+  }
+  
+  a:hover, a:active {
+    text-decoration: underline;
+  }

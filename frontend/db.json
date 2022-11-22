@@ -1,5 +1,22 @@
 {
-  "funcionarios": [],
+  "funcionarios": [
+    {
+      "nome": "Heflain",
+      "dataNascimento": "2022-11-21T22:49:15.944Z",
+      "cargo": 1,
+      "SalarioAtual": 0,
+      "endereco": {
+        "rua": "",
+        "estado": "ES",
+        "pais": "",
+        "latitude": "58.180",
+        "longitude": "-9.5",
+        "numero": 0
+      },
+      "funcionarioDoMes": false,
+      "id": 1
+    }
+  ],
   "cargos": [
     {
       "id": 1,

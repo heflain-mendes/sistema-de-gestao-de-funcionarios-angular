@@ -4,7 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {HttpClientModule} from '@angular/common/http'
+import { HttpClientModule } from '@angular/common/http';
 
 //material
 import { MatDatepickerModule } from '@angular/material/datepicker';
@@ -19,16 +19,25 @@ import { MatCardModule } from '@angular/material/card';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatSelectModule } from '@angular/material/select';
 import { MatCheckboxModule } from '@angular/material/checkbox';
-import {MatGridListModule} from '@angular/material/grid-list';
-import {MatTableModule} from '@angular/material/table';
-import {MatSnackBarModule} from '@angular/material/snack-bar';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { MatTableModule } from '@angular/material/table';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 //adicionais do angular
 import { FormsModule } from '@angular/forms';
 import { ListarFuncionarioComponent } from './view_components/listar-funcionario/listar-funcionario.component';
+import { EnderecoFuncionarioComponent } from './view_components/endereco-funcionario/endereco-funcionario.component';
 
+//leaflet
+import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 @NgModule({
-  declarations: [AppComponent, CadastraFuncionarioComponent, NavComponent, ListarFuncionarioComponent],
+  declarations: [
+    AppComponent,
+    CadastraFuncionarioComponent,
+    NavComponent,
+    ListarFuncionarioComponent,
+    EnderecoFuncionarioComponent,
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -48,11 +57,13 @@ import { ListarFuncionarioComponent } from './view_components/listar-funcionario
     MatGridListModule,
     MatTableModule,
     MatSnackBarModule,
-    
+
     //angular
     FormsModule,
     HttpClientModule,
-    
+
+    //leaflet
+    LeafletModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

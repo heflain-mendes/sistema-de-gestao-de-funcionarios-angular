@@ -1,0 +1,21 @@
+#principal{
+    padding-top: 2.5vw;
+    padding-bottom: 2.5vw;
+}
+
+#conteudo{
+    width: 70vw;
+    height: 80vh;
+    margin:auto;
+    display: flex;
+}
+
+#informacoes{
+    width: 30vw;
+    height: 80vh;
+}
+
+#map{
+    width: 40vw;
+    height: 80vh;
+}

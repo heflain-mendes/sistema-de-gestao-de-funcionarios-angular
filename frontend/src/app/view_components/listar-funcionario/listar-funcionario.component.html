@@ -8,7 +8,7 @@
     <ng-container matColumnDef="nome">
       <th mat-header-cell *matHeaderCellDef>Nome</th>
       <td mat-cell *matCellDef="let element">
-        <a [routerLink]="'../funcionario/' + element.id" >{{ element.nome }}</a>
+        <a [routerLink]="'/funcionario/' + element.id" >{{ element.nome }}</a>
       </td>
     </ng-container>
 
@@ -32,8 +32,15 @@
     </ng-container>
 
     <ng-container matColumnDef="funcionario do mês">
-      <th mat-header-cell *matHeaderCellDef>funcionario do mês</th>
+      <th mat-header-cell *matHeaderCellDef>especial</th>
       <td mat-cell *matCellDef="let element">{{ element.funcionarioDoMes }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="endereco">
+      <th mat-header-cell *matHeaderCellDef>Endereço</th>
+      <td mat-cell *matCellDef="let element">
+        <a [routerLink]="'/endereco/' + element.id">{{ element.endereco.estado }} </a>
+      </td>
     </ng-container>
 
     <ng-container matColumnDef="remover">

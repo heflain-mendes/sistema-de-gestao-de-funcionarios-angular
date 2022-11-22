@@ -13,4 +13,8 @@ export class CargoServiceService {
   getAll(){
     return this.http.get<Cargo[]>(this.url);
   }
+
+  getItem(id : number){
+    return this.http.get<Cargo>(`${this.url}/${id}`);
+  }
 }
