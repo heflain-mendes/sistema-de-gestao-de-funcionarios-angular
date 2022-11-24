@@ -63,7 +63,7 @@
           <input matInput formControlName="pais" />
         </mat-form-field>
 
-        <mat-form-field appearance="fill">
+        <mat-form-field appearance="fill" class="width-right">
           <mat-label>Estado</mat-label>
           <mat-select formControlName="estado">
             <mat-option *ngFor="let item of listEstados" [value]="item.id">{{
@@ -71,7 +71,6 @@
             }}</mat-option>
           </mat-select>
         </mat-form-field>
-
       </div>
 
       <mat-form-field appearance="fill" class="width-left">
