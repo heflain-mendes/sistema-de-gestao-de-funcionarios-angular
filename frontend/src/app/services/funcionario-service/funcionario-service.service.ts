@@ -21,7 +21,7 @@ export class FuncionarioServiceService {
   }
 
   removeItem(id : number){
-    this.http.delete(`${this.url}/${id}`).subscribe();
+    return this.http.delete(`${this.url + id}`);
   }
 
   private create(funcionario : Funcionario){
@@ -29,7 +29,7 @@ export class FuncionarioServiceService {
   }
 
   private update(funcionario : Funcionario){
-    return this.http.put(`${this.url}/${funcionario.id}`, funcionario).pipe(take(1));
+    return this.http.put(`${this.url + funcionario.id}`, funcionario).pipe(take(1));
   }
 
   save(funcionario : Funcionario){

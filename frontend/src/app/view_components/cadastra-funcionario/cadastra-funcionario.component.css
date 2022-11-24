@@ -3,6 +3,12 @@
   flex-direction: column;
 }
 
+.displayForm{
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+}
+
 .example-right-align {
   text-align: right;
 }
@@ -44,3 +50,7 @@
   margin-top: 15px;
 }
 
+div{
+  margin: 0;
+  padding: 0;
+}

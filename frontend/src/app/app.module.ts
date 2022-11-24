@@ -1,3 +1,4 @@
+import { CadastraFuncionarioComponent } from './view_components/cadastra-funcionario/cadastra-funcionario.component';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
@@ -12,7 +13,6 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatButtonModule } from '@angular/material/button';
-import { CadastraFuncionarioComponent } from './view_components/cadastra-funcionario/cadastra-funcionario.component';
 import { NavComponent } from './view/nav/nav.component';
 import { MatInputModule } from '@angular/material/input';
 import { MatCardModule } from '@angular/material/card';
@@ -24,19 +24,20 @@ import { MatTableModule } from '@angular/material/table';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 //adicionais do angular
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ListarFuncionarioComponent } from './view_components/listar-funcionario/listar-funcionario.component';
 import { EnderecoFuncionarioComponent } from './view_components/endereco-funcionario/endereco-funcionario.component';
 
 //leaflet
 import { LeafletModule } from '@asymmetrik/ngx-leaflet';
+
 @NgModule({
   declarations: [
     AppComponent,
-    CadastraFuncionarioComponent,
     NavComponent,
     ListarFuncionarioComponent,
     EnderecoFuncionarioComponent,
+    CadastraFuncionarioComponent
   ],
   imports: [
     BrowserModule,
@@ -60,10 +61,11 @@ import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 
     //angular
     FormsModule,
+    ReactiveFormsModule,
     HttpClientModule,
 
     //leaflet
-    LeafletModule,
+    LeafletModule
   ],
   providers: [],
   bootstrap: [AppComponent],

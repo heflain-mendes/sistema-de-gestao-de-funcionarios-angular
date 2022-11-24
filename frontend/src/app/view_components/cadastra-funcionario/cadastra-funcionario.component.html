@@ -1,18 +1,18 @@
 <div class="principal">
-  <form id="formulario">
+  <form id="formulario" [formGroup]="formulario" (submit)="salvar()">
     <fieldset class="display">
       <legend>Informações Pessoais</legend>
       <mat-form-field appearance="fill">
         <mat-label>Nome</mat-label>
-        <input matInput name="nome" [(ngModel)]="funcionario.nome" />
+        <input matInput formControlName="nome" />
       </mat-form-field>
+
       <mat-form-field appearance="fill">
         <mat-label>data nascimento</mat-label>
         <input
           matInput
           [matDatepicker]="picker"
-          name="dataNascimento"
-          [(ngModel)]="funcionario.dataNascimento"
+          formControlName="dataNascimento"
         />
         <mat-hint>MM/DD/YYYY</mat-hint>
         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
@@ -21,8 +21,10 @@
 
       <mat-form-field appearance="fill">
         <mat-label>Cargo</mat-label>
-        <mat-select name="cargo" [(ngModel)]="funcionario.cargo">
-          <mat-option *ngFor="let item of listCargo" [value]=item.id>{{item.cargo}}</mat-option>
+        <mat-select formControlName="cargo">
+          <mat-option *ngFor="let item of listCargo" [value]="item.id">{{
+            item.cargo
+          }}</mat-option>
         </mat-select>
       </mat-form-field>
 
@@ -33,61 +35,56 @@
           type="number"
           class="example-right-align"
           placeholder="0"
-          name="salario"
-          [(ngModel)]="funcionario.SalarioAtual"
+          formControlName="salarioAtual"
         />
         <span matPrefix>$&nbsp;</span>
         <span matSuffix>.00</span>
       </mat-form-field>
 
-      <mat-checkbox name="funcionarioDoMes" [(ngModel)]="funcionario.funcionarioDoMes">Funcionário do mês</mat-checkbox>
+      <mat-checkbox formControlName="funcionarioDoMes"
+        >Funcionário do mês</mat-checkbox
+      >
     </fieldset>
     <fieldset>
       <legend>endereço</legend>
       <div>
         <mat-form-field appearance="fill" class="rua">
           <mat-label>Rua</mat-label>
-          <input matInput name="rua" [(ngModel)]="funcionario.endereco.rua" />
+          <input matInput formControlName="rua" />
         </mat-form-field>
         <mat-form-field appearance="fill" class="numero">
           <mat-label>Nº</mat-label>
-          <input matInput type="number" name="numero" [(ngModel)]="funcionario.endereco.numero" />
+          <input matInput type="number" formControlName="numero" />
         </mat-form-field>
       </div>
       <div>
         <mat-form-field appearance="fill" class="width-left">
           <mat-label>Pais</mat-label>
-          <input matInput name="pais" [(ngModel)]="funcionario.endereco.pais" />
+          <input matInput formControlName="pais" />
         </mat-form-field>
-        <mat-form-field appearance="fill" class="width-right">
+
+        <mat-form-field appearance="fill">
           <mat-label>Estado</mat-label>
-          <input
-            matInput
-            name="estado"
-            [(ngModel)]="funcionario.endereco.estado"
-          />
+          <mat-select formControlName="estado">
+            <mat-option *ngFor="let item of listEstados" [value]="item.id">{{
+              item.nome
+            }}</mat-option>
+          </mat-select>
         </mat-form-field>
+
       </div>
 
       <mat-form-field appearance="fill" class="width-left">
         <mat-label>latitude</mat-label>
-        <input
-          matInput
-          name="latitude"
-          [(ngModel)]="funcionario.endereco.latitude"
-        />
+        <input type="number" matInput formControlName="latitude" />
       </mat-form-field>
       <mat-form-field appearance="fill" class="width-right">
         <mat-label>longitude</mat-label>
-        <input
-          matInput
-          name="longitude"
-          [(ngModel)]="funcionario.endereco.longitude"
-        />
+        <input matInput formControlName="longitude" />
       </mat-form-field>
     </fieldset>
     <div id="bottons">
-      <button (click)="salvar()" mat-raised-button color="primary">Salvar</button>
+      <button type="submit" mat-raised-button color="primary">Salvar</button>
     </div>
   </form>
 </div>

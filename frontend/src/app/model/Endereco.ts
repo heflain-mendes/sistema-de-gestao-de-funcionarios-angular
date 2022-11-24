@@ -1,8 +1,7 @@
 export interface Endereco{
-    id?: number;
     rua: string;
     numero : number;
-    estado : string;
+    estado : number;
     pais : string;
     latitude : number;
     longitude : number;

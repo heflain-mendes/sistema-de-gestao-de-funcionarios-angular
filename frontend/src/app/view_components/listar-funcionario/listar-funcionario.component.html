@@ -39,7 +39,7 @@
     <ng-container matColumnDef="endereco">
       <th mat-header-cell *matHeaderCellDef>Endereço</th>
       <td mat-cell *matCellDef="let element">
-        <a [routerLink]="'/endereco/' + element.id">{{ element.endereco.estado }} </a>
+        <a [routerLink]="'/endereco/' + element.id">{{ this.retornaEstado(element) }} </a>
       </td>
     </ng-container>
 

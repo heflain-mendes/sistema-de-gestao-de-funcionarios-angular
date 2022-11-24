@@ -1,33 +1,45 @@
-import { Router } from '@angular/router';
-import { FuncionarioServiceService } from 'src/app/services/funcionario-service/funcionario-service.service';
-import { ShowMensageService } from 'src/app/services/show-mensage/show-mensage.service';
 import { CadastraFuncionarioComponent } from '../cadastra-funcionario.component';
 import { FuncionarioState } from './FuncionarioState';
 
 export class UpdateFuncionarioState extends FuncionarioState {
-  constructor(private atualizaFuncionario: CadastraFuncionarioComponent) {
+  constructor(atualizaFuncionario: CadastraFuncionarioComponent) {
     super(atualizaFuncionario);
   }
 
   override construir(): void {
-    if (this.atualizaFuncionario.id) {
-      this.atualizaFuncionario.funcionarioService
-        .getItem(this.atualizaFuncionario.id)
+    if (this.funcionarioComponent.id) {
+      this.funcionarioComponent.funcionarioService
+        .getItem(this.funcionarioComponent.id)
         .subscribe((fun) => {
-          this.atualizaFuncionario.funcionario = fun;
+          const f = this.funcionarioComponent.formulario;
+          f.get('nome')?.setValue(fun.nome);
+          f.get('dataNascimento')?.setValue(fun.dataNascimento);
+          f.get('cargo')?.setValue(fun.cargo);
+          f.get('salarioAtual')?.setValue(fun.salarioAtual);
+          f.get('rua')?.setValue(fun.endereco.rua);
+          f.get('estado')?.setValue(fun.endereco.estado);
+          f.get('pais')?.setValue(fun.endereco.pais);
+          f.get('latitude')?.setValue(fun.endereco.latitude);
+          f.get('longitude')?.setValue(fun.endereco.longitude);
+          f.get('numero')?.setValue(fun.endereco.numero);
+          f.get('funcionarioDoMes')?.setValue(fun.funcionarioDoMes);
         });
     }
   }
 
-  override salvar(
-    router: Router,
-    funcionarioService: FuncionarioServiceService,
-    mensage: ShowMensageService
-  ): void {
-    funcionarioService
-      .save(this.atualizaFuncionario.funcionario)
-      .subscribe(() => mensage.openMensage('funcionario salvo'));
+  override salvar(): void {
+    const funcionario = this.funcionarioComponent.funcionario;
+    funcionario.id = this.funcionarioComponent.id;
 
-    router.navigate(['/list']);
+    this.funcionarioComponent.funcionarioService.save(funcionario).subscribe({
+      next: () =>
+        this.funcionarioComponent.mensage.openMensage('funcionario salvo'),
+      error: () =>
+        this.funcionarioComponent.mensage.openMensage(
+          'funcionario não pode ser salvo'
+        ),
+    });
+
+    this.funcionarioComponent.router.navigate(['/list']);
   }
 }

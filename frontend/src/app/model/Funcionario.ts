@@ -5,6 +5,6 @@ export interface Funcionario {
   dataNascimento: Date;
   endereco : Endereco;
   cargo :  number;
-  SalarioAtual : number;
+  salarioAtual : number;
   funcionarioDoMes : boolean;
 }
