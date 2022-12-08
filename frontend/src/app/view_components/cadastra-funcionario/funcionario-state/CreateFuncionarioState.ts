@@ -11,7 +11,7 @@ export class CreateFuncionarioState extends FuncionarioState {
   }
 
   override salvar(): void {
-    const funcionario = this.funcionarioComponent.funcionario;
+    const funcionario = this.funcionarioComponent.formulario.value;
 
     this.funcionarioComponent.funcionarioService.save(funcionario).subscribe({
       next: () => {

@@ -45,43 +45,45 @@
         >Funcionário do mês</mat-checkbox
       >
     </fieldset>
-    <fieldset>
-      <legend>endereço</legend>
-      <div>
-        <mat-form-field appearance="fill" class="rua">
-          <mat-label>Rua</mat-label>
-          <input matInput formControlName="rua" />
-        </mat-form-field>
-        <mat-form-field appearance="fill" class="numero">
-          <mat-label>Nº</mat-label>
-          <input matInput type="number" formControlName="numero" />
-        </mat-form-field>
-      </div>
-      <div>
+    <div formGroupName="endereco">
+      <fieldset>
+        <legend>endereço</legend>
+        <div>
+          <mat-form-field appearance="fill" class="rua">
+            <mat-label>Rua</mat-label>
+            <input matInput formControlName="rua" />
+          </mat-form-field>
+          <mat-form-field appearance="fill" class="numero">
+            <mat-label>Nº</mat-label>
+            <input matInput type="number" formControlName="numero" />
+          </mat-form-field>
+        </div>
+        <div>
+          <mat-form-field appearance="fill" class="width-left">
+            <mat-label>Pais</mat-label>
+            <input matInput formControlName="pais" />
+          </mat-form-field>
+
+          <mat-form-field appearance="fill" class="width-right">
+            <mat-label>Estado</mat-label>
+            <mat-select formControlName="estado">
+              <mat-option *ngFor="let item of listEstados" [value]="item.id">{{
+                item.nome
+              }}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+
         <mat-form-field appearance="fill" class="width-left">
-          <mat-label>Pais</mat-label>
-          <input matInput formControlName="pais" />
+          <mat-label>latitude</mat-label>
+          <input type="number" matInput formControlName="latitude" />
         </mat-form-field>
-
         <mat-form-field appearance="fill" class="width-right">
-          <mat-label>Estado</mat-label>
-          <mat-select formControlName="estado">
-            <mat-option *ngFor="let item of listEstados" [value]="item.id">{{
-              item.nome
-            }}</mat-option>
-          </mat-select>
+          <mat-label>longitude</mat-label>
+          <input matInput formControlName="longitude" />
         </mat-form-field>
-      </div>
-
-      <mat-form-field appearance="fill" class="width-left">
-        <mat-label>latitude</mat-label>
-        <input type="number" matInput formControlName="latitude" />
-      </mat-form-field>
-      <mat-form-field appearance="fill" class="width-right">
-        <mat-label>longitude</mat-label>
-        <input matInput formControlName="longitude" />
-      </mat-form-field>
-    </fieldset>
+      </fieldset>
+    </div>
     <div id="bottons">
       <button type="submit" mat-raised-button color="primary">Salvar</button>
     </div>

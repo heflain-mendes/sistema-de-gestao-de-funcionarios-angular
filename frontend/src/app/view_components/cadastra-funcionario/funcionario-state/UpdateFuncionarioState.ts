@@ -11,25 +11,27 @@ export class UpdateFuncionarioState extends FuncionarioState {
       this.funcionarioComponent.funcionarioService
         .getItem(this.funcionarioComponent.id)
         .subscribe((fun) => {
-          const f = this.funcionarioComponent.formulario;
-          f.get('nome')?.setValue(fun.nome);
-          f.get('dataNascimento')?.setValue(fun.dataNascimento);
-          f.get('cargo')?.setValue(fun.cargo);
-          f.get('salarioAtual')?.setValue(fun.salarioAtual);
-          f.get('rua')?.setValue(fun.endereco.rua);
-          f.get('estado')?.setValue(fun.endereco.estado);
-          f.get('pais')?.setValue(fun.endereco.pais);
-          f.get('latitude')?.setValue(fun.endereco.latitude);
-          f.get('longitude')?.setValue(fun.endereco.longitude);
-          f.get('numero')?.setValue(fun.endereco.numero);
-          f.get('funcionarioDoMes')?.setValue(fun.funcionarioDoMes);
+          console.log(fun);
+          this.funcionarioComponent.formulario.patchValue(fun);
+          // f.get('nome')?.setValue(fun.nome);
+          // f.get('dataNascimento')?.setValue(fun.dataNascimento);
+          // f.get('cargo')?.setValue(fun.cargo);
+          // f.get('salarioAtual')?.setValue(fun.salarioAtual);
+          // f.get('rua')?.setValue(fun.endereco.rua);
+          // f.get('estado')?.setValue(fun.endereco.estado);
+          // f.get('pais')?.setValue(fun.endereco.pais);
+          // f.get('latitude')?.setValue(fun.endereco.latitude);
+          // f.get('longitude')?.setValue(fun.endereco.longitude);
+          // f.get('numero')?.setValue(fun.endereco.numero);
+          // f.get('funcionarioDoMes')?.setValue(fun.funcionarioDoMes);
+          console.log(this.funcionarioComponent.formulario.value);
         });
     }
   }
 
   override salvar(): void {
-    const funcionario = this.funcionarioComponent.funcionario;
-    funcionario.id = this.funcionarioComponent.id;
+    const funcionario = this.funcionarioComponent.formulario.value;
+    //funcionario.id = this.funcionarioComponent.id;
 
     this.funcionarioComponent.funcionarioService.save(funcionario).subscribe({
       next: () =>
