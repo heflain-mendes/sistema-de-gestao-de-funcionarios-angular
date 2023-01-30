@@ -1,7 +1,7 @@
 import { environment } from './../../../environments/environment';
 import { Funcionario } from './../../model/Funcionario';
 import { Injectable } from '@angular/core';
-import {HttpClient, HttpHandler} from '@angular/common/http'
+import {HttpClient, HttpHeaders} from '@angular/common/http'
 import { take } from 'rxjs';
 
 @Injectable({
@@ -13,7 +13,8 @@ export class FuncionarioServiceService {
   constructor(private http: HttpClient) { }
 
   getAll(){
-    return this.http.get<Funcionario[]>(this.url);
+    var teste = this.http.get<Funcionario[]>(this.url);
+    return teste;
   }
 
   getItem(id : number){
@@ -25,7 +26,10 @@ export class FuncionarioServiceService {
   }
 
   private create(funcionario : Funcionario){
-    return this.http.post(this.url, funcionario).pipe(take(1));
+    const header = new HttpHeaders()
+      .set('content-type', 'application/json')
+      .set('Access-Control-Allow-Origin', '*')
+    return this.http.post(this.url, JSON.stringify(funcionario), {headers: header}).pipe(take(1));
   }
 
   private update(funcionario : Funcionario){

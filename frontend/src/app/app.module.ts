@@ -1,11 +1,11 @@
 import { CadastraFuncionarioComponent } from './view_components/cadastra-funcionario/cadastra-funcionario.component';
-import { NgModule } from '@angular/core';
+import { InjectionToken, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 //material
 import { MatDatepickerModule } from '@angular/material/datepicker';
@@ -30,6 +30,14 @@ import { EnderecoFuncionarioComponent } from './view_components/endereco-funcion
 
 //leaflet
 import { LeafletModule } from '@asymmetrik/ngx-leaflet';
+import { InterceptadorHttpService } from './services/interceptador/interceptador-http.service';
+import { CargoServiceService } from './services/cargo-service/cargo-service.service';
+
+export const URL_API2 = new InjectionToken<string>('');
+const APP_CONFIG = Object.freeze({
+  url: 'http://localhost:8080',
+  isdevelopment: false,
+});
 
 @NgModule({
   declarations: [
@@ -67,7 +75,42 @@ import { LeafletModule } from '@asymmetrik/ngx-leaflet';
     //leaflet
     LeafletModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: InterceptadorHttpService,
+      multi: true
+    },
+    {
+      provide: 'URL_API',
+      useValue: 'http://localhost:8080'
+    },
+    {
+      provide: URL_API2,
+      useValue: 'http://localhost:8080'
+    },
+    {
+      provide: 'APP_CONFIG',
+      useValue: APP_CONFIG
+    },
+    {
+      provide: 'BOAS_VINDAS',
+      useValue: () =>{
+        return 'Bem vindo ao sistema de cadastro de funcionários';
+      }
+    },
+    {
+      provide: "TESTE_USERFACTORY",
+      useFactory: (cargoService: CargoServiceService, CONFIG : any) => {
+        return CONFIG.isdevelopment ? cargoService : cargoService.getAll();
+      },
+      deps: [CargoServiceService, 'APP_CONFIG']
+    }
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
+
+/*
+
+*/

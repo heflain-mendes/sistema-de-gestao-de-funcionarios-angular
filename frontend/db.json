@@ -31,6 +31,22 @@
       },
       "funcionarioDoMes": true,
       "id": 2
+    },
+    {
+      "nome": "Heflain",
+      "dataNascimento": "2022-11-12T03:00:00.000Z",
+      "cargo": 2,
+      "salarioAtual": 3,
+      "funcionarioDoMes": false,
+      "endereco": {
+        "rua": "Delcio",
+        "estado": "3",
+        "pais": "Brasil",
+        "latitude": 90,
+        "longitude": "50",
+        "numero": 80
+      },
+      "id": 3
     }
   ],
   "cargos": [

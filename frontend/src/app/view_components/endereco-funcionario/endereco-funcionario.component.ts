@@ -29,7 +29,7 @@ export class EnderecoFuncionarioComponent {
     salarioAtual: 0,
     funcionarioDoMes: false,
   };
-  
+
   estado: Estado = {
     nome: '',
     sigla: '',
